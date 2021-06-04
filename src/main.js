@@ -8,10 +8,14 @@ const htmlToDocx = require("html-to-docx-buffer");
 
 INKAPI.ready(() => {
   const UI = INKAPI.ui;
+  const IO = INKAPI.io;
 
   //creating menu items for import and export
   UI.menu.addMenuItem(exportDocxHandler, "File", "Export", "as Docx");
   UI.menu.addMenuItem(importDocxHandler, "File", "Import", "from Docx");
+
+  // associating current plugin with docx extension. to trigger whenever such file is dropped over editor
+  IO.associateFileType(openFileHandler, "docx");
 
 })
 
