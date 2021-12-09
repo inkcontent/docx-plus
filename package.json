@@ -9,7 +9,7 @@
     "bundle": "browserify src/main.js -o src/bundle.js",
     "build": "npm run bundle && inkplugin package -o dist"
   },
-  "author": "Syed Faris Ahmed",
+  "author": "INK",
   "license": "MIT",
   "ink-plugin": {
     "id": "8b132e4c-7bf6-43e7-a5f6-160530536137",

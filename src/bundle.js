@@ -49053,30 +49053,36 @@ utils.intFromLE = intFromLE;
 arguments[4][153][0].apply(exports,arguments)
 },{"buffer":193,"dup":153}],298:[function(require,module,exports){
 module.exports={
-  "_from": "elliptic@^6.5.3",
+  "_args": [
+    [
+      "elliptic@6.5.4",
+      "/Users/apple/Desktop/Sudofy Workspace/docx-plus"
+    ]
+  ],
+  "_development": true,
+  "_from": "elliptic@6.5.4",
   "_id": "elliptic@6.5.4",
   "_inBundle": false,
   "_integrity": "sha512-iLhC6ULemrljPZb+QutR5TQGB+pdW6KGD5RSegS+8sorOZT+rdQFbsQFJgvN3eRqNALqJer4oQ16YvJHlU8hzQ==",
   "_location": "/elliptic",
   "_phantomChildren": {},
   "_requested": {
-    "type": "range",
+    "type": "version",
     "registry": true,
-    "raw": "elliptic@^6.5.3",
+    "raw": "elliptic@6.5.4",
     "name": "elliptic",
     "escapedName": "elliptic",
-    "rawSpec": "^6.5.3",
+    "rawSpec": "6.5.4",
     "saveSpec": null,
-    "fetchSpec": "^6.5.3"
+    "fetchSpec": "6.5.4"
   },
   "_requiredBy": [
     "/browserify-sign",
     "/create-ecdh"
   ],
   "_resolved": "https://registry.npmjs.org/elliptic/-/elliptic-6.5.4.tgz",
-  "_shasum": "da37cebd31e79a1367e941b592ed1fbebd58abbb",
-  "_spec": "elliptic@^6.5.3",
-  "_where": "/Users/apple/Desktop/Sudofy Workspace/MS Word DocX/node_modules/browserify-sign",
+  "_spec": "6.5.4",
+  "_where": "/Users/apple/Desktop/Sudofy Workspace/docx-plus",
   "author": {
     "name": "Fedor Indutny",
     "email": "fedor@indutny.com"
@@ -49084,7 +49090,6 @@ module.exports={
   "bugs": {
     "url": "https://github.com/indutny/elliptic/issues"
   },
-  "bundleDependencies": false,
   "dependencies": {
     "bn.js": "^4.11.9",
     "brorand": "^1.1.0",
@@ -49094,7 +49099,6 @@ module.exports={
     "minimalistic-assert": "^1.0.1",
     "minimalistic-crypto-utils": "^1.0.1"
   },
-  "deprecated": false,
   "description": "EC cryptography",
   "devDependencies": {
     "brfs": "^2.0.2",
@@ -92491,7 +92495,10 @@ async function exportDocxHandler() {
 
 // handling import menu item click
 function importDocxHandler() {
-  INKAPI.io.openFile(openFileHandler, { ext: "docx", allowMultipleFiles: false });
+  INKAPI.editor.clearContent(clear => {
+    if (!clear) return;
+    INKAPI.io.openFile(openFileHandler, { ext: "docx", allowMultipleFiles: false });
+  });
 }
 
 // handling file open on import

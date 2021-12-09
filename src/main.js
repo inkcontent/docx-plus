@@ -44,7 +44,10 @@ async function exportDocxHandler() {
 
 // handling import menu item click
 function importDocxHandler() {
-  INKAPI.io.openFile(openFileHandler, { ext: "docx", allowMultipleFiles: false });
+  INKAPI.editor.clearContent(clear => {
+    if (!clear) return;
+    INKAPI.io.openFile(openFileHandler, { ext: "docx", allowMultipleFiles: false });
+  });
 }
 
 // handling file open on import
