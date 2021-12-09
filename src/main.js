@@ -4,7 +4,7 @@ importScripts('../inkapi.js');
 const mammoth = require("mammoth");
 
 // for editor content to Docx
-const htmlToDocx = require("html-to-docx-buffer");
+const htmlToDocx = require("html-to-docx");
 
 INKAPI.ready(() => {
   const UI = INKAPI.ui;
