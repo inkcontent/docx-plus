@@ -44,7 +44,7 @@ async function exportDocxHandler() {
 
 // handling import menu item click
 function importDocxHandler() {
-  INKAPI.editor.clearContent(clear => {
+  INKAPI.editor.resolveUnsavedContent(clear => {
     if (!clear) return;
     INKAPI.io.openFile(openFileHandler, { ext: "docx", allowMultipleFiles: false });
   });
@@ -54,6 +54,7 @@ function importDocxHandler() {
 async function openFileHandler(res) {
   mammoth.convertToHtml({ arrayBuffer: res[0]?.data })
     .then(result => {
-      INKAPI.editor.loadHTML(result.value);
+      INKAPI.editor.clearContent();
+      setTimeout(() => INKAPI.editor.loadHTML(result.value), 0);
     })
 }
