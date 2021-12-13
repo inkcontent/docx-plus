@@ -15,7 +15,7 @@ INKAPI.ready(() => {
   UI.menu.addMenuItem(importDocxHandler, "File", "Import", "from Docx");
 
   // associating current plugin with docx extension. to trigger whenever such file is dropped over editor
-  IO.associateFileType(openFileHandler, "docx");
+  IO.associateFileType(handleAssociateFile, "docx");
 
 })
 
@@ -50,11 +50,20 @@ function importDocxHandler() {
   });
 }
 
+function handleAssociateFile(res) {
+  INKAPI.editor.resolveUnsavedContent(clear => {
+    if (!clear) return;
+    openFileHandler(res);
+  });
+}
+
 // handling file open on import
 async function openFileHandler(res) {
   mammoth.convertToHtml({ arrayBuffer: res[0]?.data })
     .then(result => {
       INKAPI.editor.clearContent();
-      setTimeout(() => INKAPI.editor.loadHTML(result.value), 0);
+      setTimeout(() => {
+        INKAPI.editor.loadHTML(result.value);
+      }, 0);
     })
 }
