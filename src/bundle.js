@@ -73280,7 +73280,14 @@ async function exportDocxHandler() {
   const Editor = INKAPI.editor;
   const IO = INKAPI.io;
 
-  const htmlString = await Editor.getHTML(); //retrieve editor content in docx format.
+  let htmlString = await Editor.getHTML(); //retrieve editor content in docx format.
+
+  // removing style and width attributes from image tags in html string
+  Array.from(htmlString.matchAll(/<img([\w\W]+?)\/>/g)).map(i => {
+    htmlString = htmlString.replaceAll(i[0], i[0].replaceAll(/((width|style)="([\w\W]+?)")/g, ''));
+  });
+  //-------------------------
+
   const converted = await htmlToDocx(htmlString, null, {
     table: {
       row: {

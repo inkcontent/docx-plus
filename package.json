@@ -1,6 +1,6 @@
 {
   "name": "docx-plus",
-  "version": "1.6.2",
+  "version": "1.7.0",
   "description": "",
   "homepage": "",
   "main": "src/bundle.js",
